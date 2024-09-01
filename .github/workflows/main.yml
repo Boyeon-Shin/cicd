@@ -51,24 +51,23 @@ jobs:
             SSH -o StrictHostKeyChecking=no -i tmp/new_id \
               "${{ secrets.SSH_BASTION_USER }}@${{ secrets.SSH_BASTION_HOST }} -p 10020 "echo Bastion에 연결 성공"
           
+    deploy:
+      runs-on: ubuntu-latest
+      needs: [setup, test]
+      steps:
+        - uses: actions/checkout@v4
 
-      deploy:
-        runs-on: ubuntu-latest
-        needs: [setup, test]
-        steps:
-          - uses: actions/checkout@v4
+        - name: Bun 셋업
+          uses: oven-sh/setup-bun@v2
+          with:
+            bun-version: "1.1.26"
 
-          - name: Bun 셋업
-            uses: oven-sh/setup-bun@v2
-            with:
-              bun-version: "1.1.26"
+        - name: Node.js 셋업
+          uses: actions/setup-node@v3
+          with:
+            bun-version: "20.17.0"
 
-          - name: Node.js 셋업
-            uses: actions/setup-node@v3
-            with:
-              bun-version: "20.17.0"
-
-          - name: Bun 환경 검증
-            run: bun --version
+        - name: Bun 환경 검증
+          run: bun --version
 
 
