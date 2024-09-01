@@ -39,17 +39,17 @@ jobs:
         - name: SSH 셋업
           uses: webfactory/ssh-agent@v0.7.0
           with:
-            ssh-private-key: ${{secrets.SSH_PRIVATE_KEY}}
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
         - name: SSH 파일 저장
           run: |
-            echo: "${{ secret.SSH_PRIVATE_KEY }}" > /tmp/new_id
+            echo: "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/new_id
             chmod 600 /tmp.ne_id
 
         - name: Bastion 연결 테스트
           run: |
             SSH -o StrictHostKeyChecking=no -i tmp/new_id \
-              "${{ secret.SSH_BASTION_USER }}@${{ secrets.SSH_BASTION_HOST}} -p 10020 "echo Bastion에 연결 성공"
+              "${{ secrets.SSH_BASTION_USER }}@${{ secrets.SSH_BASTION_HOST }} -p 10020 "echo Bastion에 연결 성공"
           
 
       deploy:
