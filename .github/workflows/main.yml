@@ -49,7 +49,7 @@ jobs:
         - name: Bastion 연결 테스트
           run: |
             SSH -o StrictHostKeyChecking=no -i tmp/new_id \
-              "${{ secrets.SSH_BASTION_USER }}@${{ secrets.SSH_BASTION_HOST }} -p 10020 "echo Bastion에 연결 성공"
+              ${{ secrets.SSH_BASTION_USER }}@${{ secrets.SSH_BASTION_HOST }} -p 10020 "echo Bastion에 연결 성공"
           
     deploy:
       runs-on: ubuntu-latest
