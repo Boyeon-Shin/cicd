@@ -44,7 +44,7 @@ jobs:
         - name: SSH 파일 저장
           run: |
             echo: "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/new_id
-            chmod 600 /tmp.ne_id
+            chmod 600 /tmp.new_id
 
         - name: Bastion 연결 테스트
           run: |
