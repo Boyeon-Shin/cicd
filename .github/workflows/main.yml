@@ -1,1 +1,14 @@
 name: github-action-tutorial-2024
+
+jobs:
+    setup:
+        runs-on: ubuntu-latest
+        setups:
+          - uses: actions/checkout@v4
+
+          - name: Bun 셋업
+            uses: oven-sh/setup-bun@v2
+            with:
+              bun-version: "1.1.26"
+
+          - run: bun install
